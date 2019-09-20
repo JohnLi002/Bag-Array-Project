@@ -17,3 +17,5 @@ Design and implement a one-person guessing game that chooses n random integers i
 The same integer might be chosen more than once.
 Designed the game as an ADT. The bag used contains the integers chosen by the game. The integers m and n are specified by the client.
 
+---
+
