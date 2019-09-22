@@ -97,8 +97,9 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 
 	@Override
-	public T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
+	public T[] toArray(T[] input) {
+		
+		//to be defined later after asking for more information
 		return null;
 	}
 
