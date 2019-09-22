@@ -98,8 +98,6 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T[] toArray(T[] input) {
-		
-		//to be defined later after asking for more information
 		return null;
 	}
 
