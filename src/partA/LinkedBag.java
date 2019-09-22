@@ -3,6 +3,7 @@ package partA;
 public class LinkedBag <T> implements BagInterface <T> {
 	private Node  firstNode;
 	private int numberOfEntries;
+	
 	public LinkedBag () {    // empty bag
 		firstNode = null;
 		numberOfEntries = 0;
@@ -10,13 +11,15 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public int getCurrentSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numberOfEntries;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (firstNode == null) {
+			assert (numberOfEntries == 0);
+			return true;
+		}
 		return false;
 	}
 
@@ -38,14 +41,13 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T remove() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		firstNode = null;
 	}
 
 	@Override
