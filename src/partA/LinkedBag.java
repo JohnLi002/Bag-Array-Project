@@ -35,12 +35,21 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public boolean remove(T anEntry) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public T remove() {
+		if(firstNode.next != null) {
+			Node initial = firstNode;
+			firstNode = firstNode.next;
+			numberOfEntries--;
+			return initial.data;
+		}
+		else {
+			firstNode = null;
+		}
 		
 		return null;
 	}
@@ -52,14 +61,27 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public boolean contains(T anEntry) {
-		// TODO Auto-generated method stub
+		Node check = firstNode;
+		while(check != null) {
+			if(check.equals(anEntry)) {
+				return false;
+			}
+			check = check.next;
+		}
 		return false;
 	}
 
 	@Override
 	public int getFrequencyOf(T anEntry) {
-		// TODO Auto-generated method stub
-		return 0;
+		int counter = 0;
+		Node check = firstNode;
+		while(check != null) {
+			if(anEntry.equals(check.data)) {
+				counter++;
+			}
+			check = check.next;
+		}
+		return counter;
 	}
 
 	@Override
@@ -67,8 +89,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		@SuppressWarnings("unchecked")
 		T[] result = (T[]) new Object[numberOfEntries];
 		int idx = 0;
-		for (Node currentNode = firstNode; currentNode != null;
-				currentNode = currentNode.next) {
+		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
 			result[idx ++] = currentNode.data;
 		}
 		return result;
