@@ -124,7 +124,18 @@ public class LinkedBag <T> implements BagInterface <T> {
 	public LinkedBag<T> Union(LinkedBag<T> other)
 	{
 		//	TODO: EVERYTHING
-		
+		LinkedBag<T> result = new LinkedBag<T>();
+		Node temp = firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		temp = other.firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		return result;
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other)
 	{
@@ -139,14 +150,11 @@ public class LinkedBag <T> implements BagInterface <T> {
 		Node ( T data, Node nextNode) {
 			this.data = data;
 			next = nextNode;
-
 		}
 
 		Node (T data) {
 			this (data, null);
 		}
-
-
 	}
 	
 	
