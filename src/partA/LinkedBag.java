@@ -38,8 +38,11 @@ public class LinkedBag <T> implements BagInterface <T> {
 	// Exclusively for the purpose of allowing remove(T anEntry) to use recursion
 	private boolean remove(T anEntry, Node search)
 	{
-		if (search.data.equals(anEntry))
+		if (search.next.data.equals(anEntry))
 		{
+			search.next.data = null;
+			search.next = search.next.next;
+			numberOfEntries--;
 			return true;
 		}
 		else if (search.next != null)
@@ -149,13 +152,45 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 	public LinkedBag<T> Union(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
-		
+		LinkedBag<T> result = new LinkedBag<T>();
+		Node temp = firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		temp = other.firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		return result;
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
+		LinkedBag<T> temp = new LinkedBag<T>();
+		Node t1 = firstNode;
+		do {
+			temp.add(t1.data);
+			t1 = t1.next;
+		} while(t1.next != null);
+		LinkedBag<T> oter = new LinkedBag<T>();
+		Node to = other.firstNode;
+		do {
+			oter.add(to.data);
+			to = to.next;
+		} while(to.next != null);
 		
+		LinkedBag<T> result = new LinkedBag<T>();
+		T temporary;
+		while (!oter.isEmpty())
+		{
+			temporary = oter.remove();
+			if(temp.remove(temporary))
+			{
+				result.add(temporary);
+			}
+		}
+		return result;
 	}
 	
 	private class Node {
@@ -165,14 +200,11 @@ public class LinkedBag <T> implements BagInterface <T> {
 		Node ( T data, Node nextNode) {
 			this.data = data;
 			next = nextNode;
-
 		}
 
 		Node (T data) {
 			this (data, null);
 		}
-
-
 	}
 	
 	
