@@ -141,7 +141,6 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
 		LinkedBag<T> temp = new LinkedBag<T>();
 		Node t1 = firstNode;
 		do {
