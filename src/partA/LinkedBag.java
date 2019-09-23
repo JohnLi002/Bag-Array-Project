@@ -148,11 +148,18 @@ public class LinkedBag <T> implements BagInterface <T> {
 			temp.add(t1.data);
 			t1 = t1.next;
 		} while(t1.next != null);
+		LinkedBag<T> oter = new LinkedBag<T>();
+		Node to = other.firstNode;
+		do {
+			oter.add(to.data);
+			to = to.next;
+		} while(to.next != null);
+		
 		LinkedBag<T> result = new LinkedBag<T>();
 		T temporary;
-		while (!other.isEmpty())
+		while (!oter.isEmpty())
 		{
-			temporary = other.remove();
+			temporary = oter.remove();
 			if(temp.remove(temporary))
 			{
 				result.add(temporary);
