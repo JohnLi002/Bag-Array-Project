@@ -1,5 +1,7 @@
 package partA;
 
+import java.util.Arrays;
+
 public class LinkedBag <T> implements BagInterface <T> {
 	private Node  firstNode;
 	private int numberOfEntries;
@@ -35,6 +37,9 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public boolean remove(T anEntry) {
+		
+		
+		
 		
 		return false;
 	}
@@ -98,7 +103,12 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T[] toArray(T[] input) {
-		return null;
+		T[] result = Arrays.copyOf(input, numberOfEntries);
+		int idx = 0;
+		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
+			result[idx ++] = currentNode.data;
+		}
+		return result;
 	}
 
 
