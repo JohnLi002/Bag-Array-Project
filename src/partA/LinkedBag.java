@@ -1,5 +1,7 @@
 package partA;
 
+import java.util.Arrays;
+
 public class LinkedBag <T> implements BagInterface <T> {
 	private Node  firstNode;
 	private int numberOfEntries;
@@ -36,8 +38,11 @@ public class LinkedBag <T> implements BagInterface <T> {
 	// Exclusively for the purpose of allowing remove(T anEntry) to use recursion
 	private boolean remove(T anEntry, Node search)
 	{
-		if (search.data.equals(anEntry))
+		if (search.next.data.equals(anEntry))
 		{
+			search.next.data = null;
+			search.next = search.next.next;
+			numberOfEntries--;
 			return true;
 		}
 		else if (search.next != null)
@@ -51,7 +56,8 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 	@Override
 	public boolean remove(T anEntry) {
-		return remove(anEntry, firstNode);
+
+	  return remove(anEntry, firstNode);
 	}
 
 	@Override
@@ -113,23 +119,78 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T[] toArray(T[] input) {
-		return null;
+		T[] result = Arrays.copyOf(input, numberOfEntries);
+		int idx = 0;
+		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
+			result[idx ++] = currentNode.data;
+		}
+		return result;
 	}
 	
 	public boolean equals(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
-		return false;
+		if(other.getCurrentSize() != getCurrentSize()) {
+			return false;
+		}
+		
+		LinkedBag<T> given = new LinkedBag<>();
+		Node temp = other.firstNode;
+		Node currentNode = firstNode;
+		
+		while(temp != null) {
+			given.add(temp.data);
+			temp = temp.next;
+		}
+		while(currentNode != null) {
+			if(!given.remove(firstNode.data)) {
+				return false;
+			}
+			currentNode = currentNode.next;
+		}
+		
+		return true;
 	}
 	public LinkedBag<T> Union(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
-		
+		LinkedBag<T> result = new LinkedBag<T>();
+		Node temp = firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		temp = other.firstNode;
+		do {
+			result.add(temp.data);
+			temp = temp.next;
+		} while(temp.next != null);
+		return result;
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
+		LinkedBag<T> temp = new LinkedBag<T>();
+		Node t1 = firstNode;
+		do {
+			temp.add(t1.data);
+			t1 = t1.next;
+		} while(t1.next != null);
+		LinkedBag<T> oter = new LinkedBag<T>();
+		Node to = other.firstNode;
+		do {
+			oter.add(to.data);
+			to = to.next;
+		} while(to.next != null);
 		
+		LinkedBag<T> result = new LinkedBag<T>();
+		T temporary;
+		while (!oter.isEmpty())
+		{
+			temporary = oter.remove();
+			if(temp.remove(temporary))
+			{
+				result.add(temporary);
+			}
+		}
+		return result;
 	}
 	
 	private class Node {
@@ -139,14 +200,11 @@ public class LinkedBag <T> implements BagInterface <T> {
 		Node ( T data, Node nextNode) {
 			this.data = data;
 			next = nextNode;
-
 		}
 
 		Node (T data) {
 			this (data, null);
 		}
-
-
 	}
 	
 	
