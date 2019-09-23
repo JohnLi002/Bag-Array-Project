@@ -30,7 +30,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		Node newNode = new Node(anEntry);
 		newNode.next = firstNode;
 		firstNode = newNode;
-		numberOfEntries ++;
+		numberOfEntries++;
 		return true;
 	}
 
@@ -73,6 +73,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 	@Override
 	public void clear() {
 		firstNode = null;
+		numberOfEntries = 0;
 	}
 
 	@Override
@@ -129,14 +130,14 @@ public class LinkedBag <T> implements BagInterface <T> {
 		
 		LinkedBag<T> given = new LinkedBag<>();
 		Node temp = other.firstNode;
-		Node currentNode = firstNode;
 		
 		while(temp != null) {
 			given.add(temp.data);
 			temp = temp.next;
 		}
+		Node currentNode = firstNode;
 		while(currentNode != null) {
-			if(!given.remove(firstNode.data)) {
+			if(!given.remove(currentNode.data)) {
 				return false;
 			}
 			currentNode = currentNode.next;
@@ -147,41 +148,36 @@ public class LinkedBag <T> implements BagInterface <T> {
 	public LinkedBag<T> Union(LinkedBag<T> other) {
 		LinkedBag<T> result = new LinkedBag<T>();
 		Node temp = firstNode;
-		do {
+		while(temp != null) {
 			result.add(temp.data);
 			temp = temp.next;
-		} while(temp.next != null);
-		temp = other.firstNode;
-		do {
+		} 		temp = other.firstNode;
+		 while(temp != null) {
 			result.add(temp.data);
 			temp = temp.next;
-		} while(temp.next != null);
+		}
+		
 		return result;
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other) {
-		LinkedBag<T> temp = new LinkedBag<T>();
-		Node t1 = firstNode;
-		do {
-			temp.add(t1.data);
-			t1 = t1.next;
-		} while(t1.next != null);
-		LinkedBag<T> oter = new LinkedBag<T>();
-		Node to = other.firstNode;
-		do {
-			oter.add(to.data);
-			to = to.next;
-		} while(to.next != null);
+		LinkedBag<T> temp = new LinkedBag<>();
+		Node otherData = other.firstNode;
 		
-		LinkedBag<T> result = new LinkedBag<T>();
-		T temporary;
-		while (!oter.isEmpty())
-		{
-			temporary = oter.remove();
-			if(temp.remove(temporary))
-			{
-				result.add(temporary);
-			}
+		while(otherData != null) {
+			temp.add(otherData.data);
+			otherData = otherData.next;
 		}
+		
+		LinkedBag<T> result = new LinkedBag<>();
+		Node thisData = firstNode;
+	
+		while(!temp.isEmpty() && thisData != null) {
+			if(temp.remove(thisData.data)) {
+				result.add(thisData.data);
+			}
+			thisData = thisData.next;
+		}
+		
 		return result;
 	}
 	
