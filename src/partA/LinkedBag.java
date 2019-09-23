@@ -40,6 +40,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		{
 			search.next.data = null;
 			search.next = search.next.next;
+			numberOfEntries--;
 			return true;
 		}
 		else if (search.next != null)
@@ -142,6 +143,22 @@ public class LinkedBag <T> implements BagInterface <T> {
 	{
 		//	TODO: EVERYTHING
 		LinkedBag<T> temp = new LinkedBag<T>();
+		Node t1 = firstNode;
+		do {
+			temp.add(t1.data);
+			t1 = t1.next;
+		} while(t1.next != null);
+		LinkedBag<T> result = new LinkedBag<T>();
+		T temporary;
+		while (!other.isEmpty())
+		{
+			temporary = other.remove();
+			if(temp.remove(temporary))
+			{
+				result.add(temporary);
+			}
+		}
+		return result;
 	}
 	
 	private class Node {
