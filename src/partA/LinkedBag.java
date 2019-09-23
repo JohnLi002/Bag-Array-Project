@@ -34,30 +34,25 @@ public class LinkedBag <T> implements BagInterface <T> {
 		return true;
 	}
 
-
-	// Exclusively for the purpose of allowing remove(T anEntry) to use recursion
-	private boolean remove(T anEntry, Node search)
-	{
-		if (search.next.data.equals(anEntry))
-		{
-			search.next.data = null;
-			search.next = search.next.next;
-			numberOfEntries--;
-			return true;
-		}
-		else if (search.next != null)
-		{
-			return remove(anEntry, search.next);
-		}
-		else
-		{
-			return false;
-		}
-	}
 	@Override
 	public boolean remove(T anEntry) {
-
-	  return remove(anEntry, firstNode);
+		if(getCurrentSize() == 0) {
+			return false;
+		}
+		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
+			if(currentNode.data.equals(anEntry) && getCurrentSize() == 1) {
+				firstNode = null;
+				numberOfEntries--;
+				return true;
+			} else if(currentNode.data.equals(anEntry)) {
+				currentNode.data = firstNode.data;
+				firstNode = firstNode.next;
+				numberOfEntries--;
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -127,8 +122,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		return result;
 	}
 	
-	public boolean equals(LinkedBag<T> other)
-	{
+	public boolean equals(LinkedBag<T> other) {
 		if(other.getCurrentSize() != getCurrentSize()) {
 			return false;
 		}
@@ -150,8 +144,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		
 		return true;
 	}
-	public LinkedBag<T> Union(LinkedBag<T> other)
-	{
+	public LinkedBag<T> Union(LinkedBag<T> other) {
 		LinkedBag<T> result = new LinkedBag<T>();
 		Node temp = firstNode;
 		do {
@@ -165,8 +158,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		} while(temp.next != null);
 		return result;
 	}
-	public LinkedBag<T> Intersection(LinkedBag<T> other)
-	{
+	public LinkedBag<T> Intersection(LinkedBag<T> other) {
 		LinkedBag<T> temp = new LinkedBag<T>();
 		Node t1 = firstNode;
 		do {
