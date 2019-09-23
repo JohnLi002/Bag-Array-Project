@@ -33,10 +33,25 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 
 
+	// Exclusively for the purpose of allowing remove(T anEntry) to use recursion
+	private boolean remove(T anEntry, Node search)
+	{
+		if (search.data.equals(anEntry))
+		{
+			return true;
+		}
+		else if (search.next != null)
+		{
+			return remove(anEntry, search.next);
+		}
+		else
+		{
+			return false;
+		}
+	}
 	@Override
 	public boolean remove(T anEntry) {
-		
-		return false;
+		return remove(anEntry, firstNode);
 	}
 
 	@Override
@@ -100,8 +115,23 @@ public class LinkedBag <T> implements BagInterface <T> {
 	public T[] toArray(T[] input) {
 		return null;
 	}
-
-
+	
+	public boolean equals(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		return false;
+	}
+	public LinkedBag<T> Union(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		
+	}
+	public LinkedBag<T> Intersection(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		
+	}
+	
 	private class Node {
 		private  T data;
 		private Node next;
@@ -118,6 +148,8 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 
 	}
+	
+	
 }
 
 
