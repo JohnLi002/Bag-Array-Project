@@ -126,8 +126,26 @@ public class LinkedBag <T> implements BagInterface <T> {
 	
 	public boolean equals(LinkedBag<T> other)
 	{
-		//	TODO: EVERYTHING
-		return false;
+		if(other.getCurrentSize() != getCurrentSize()) {
+			return false;
+		}
+		
+		LinkedBag<T> given = new LinkedBag<>();
+		Node temp = other.firstNode;
+		Node currentNode = firstNode;
+		
+		while(temp != null) {
+			given.add(temp.data);
+			temp = temp.next;
+		}
+		while(currentNode != null) {
+			if(!given.remove(firstNode.data)) {
+				return false;
+			}
+			currentNode = currentNode.next;
+		}
+		
+		return true;
 	}
 	public LinkedBag<T> Union(LinkedBag<T> other)
 	{
