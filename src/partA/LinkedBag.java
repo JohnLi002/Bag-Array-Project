@@ -115,8 +115,23 @@ public class LinkedBag <T> implements BagInterface <T> {
 	public T[] toArray(T[] input) {
 		return null;
 	}
-
-
+	
+	public boolean equals(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		return false;
+	}
+	public LinkedBag<T> Union(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		
+	}
+	public LinkedBag<T> Intersection(LinkedBag<T> other)
+	{
+		//	TODO: EVERYTHING
+		
+	}
+	
 	private class Node {
 		private  T data;
 		private Node next;
@@ -133,6 +148,8 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 
 	}
+	
+	
 }
 
 
