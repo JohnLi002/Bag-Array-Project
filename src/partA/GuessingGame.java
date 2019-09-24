@@ -6,11 +6,12 @@ public class GuessingGame {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		boolean keepGoing = true; //boolean represent continue game
+		int guesses = 0;	//counts the number of times the player has guessed.
 		
 		while(keepGoing) {//will loop until the user doesn't want to after a game
 			
 			boolean correct = false; //will be false until the user gets their guess exactly correct
-			System.out.println("Input the amount of numbers you want to guess for.");
+			System.out.print("Input the amount of numbers you want to guess for:" +'\t');
 			int userNum = input.nextInt(); //asks for the number of random numbers to be generated
 			
 			LinkedBag<Integer> randomNums = new LinkedBag<>();
@@ -21,7 +22,7 @@ public class GuessingGame {
 			System.out.println("Enter " + userNum + " integers in the range from 1 to 10. Entries may be duplicate.");
 
 			while(!correct) {//loops guessing until user guesses correctly
-				System.out.println("Input guesses");
+				System.out.print("Input:" + '\t');
 				LinkedBag<Integer> userBag = new LinkedBag<>();
 				
 				for(int i = 0; i < userNum; i++) {
@@ -38,6 +39,7 @@ public class GuessingGame {
 				}
 				else {
 					int numCorrect = 0; //number of guess correct
+					guesses++;
 					
 					//array to help check how many guess are correct. 
 					Object[] answerArray =  randomNums.toArray();
@@ -56,7 +58,7 @@ public class GuessingGame {
 				}
 			}
 			
-			System.out.println("You are correct! Play again?");
+			System.out.println("You are correct! It only took you " + guesses + " guesses! Play again?");
 			String contAnswer = input.next(); //check if user continue
 			
 			if(contAnswer.toLowerCase().equals("no")) { //if user inputs "no" then game end
