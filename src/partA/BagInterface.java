@@ -1,4 +1,9 @@
 package partA;
+
+/*
+ * Group Members: John Li, Tony Lei, AJ Kreuzkamp
+ */
+
 public interface BagInterface <T> {
 	/** 
 	 Gets the current number of objects in the bag

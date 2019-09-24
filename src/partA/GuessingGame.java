@@ -1,4 +1,8 @@
 package partA;
+/*
+ * Group Members: John Li, Tony Lei, AJ Kreuzkamp
+ */
+
 
 import java.util.Scanner;
 
@@ -43,13 +47,13 @@ public class GuessingGame {
 					guesses++;
 					
 					//array to help check how many guess are correct. 
-					Object[] answerArray =  randomNums.toArray();
+					Object[] answerArray = randomNums.toArray();
 					Object[] guessArray = userBag.toArray();
 					
 					for(int i = 0; i < userNum; i++) {
 						for(int ii = 0; ii < userNum; ii++) {
 							if(answerArray[ii].equals(guessArray[i])) {
-								numCorrect++;
+								numCorrect+=1;
 								answerArray[ii] = null;
 								break;
 							}

@@ -1,5 +1,9 @@
 package partA;
 
+/*
+ * Group Members: John Li, Tony Lei, AJ Kreuzkamp
+ */
+
 import java.util.Arrays;
 
 public class LinkedBag <T> implements BagInterface <T> {
@@ -9,10 +13,6 @@ public class LinkedBag <T> implements BagInterface <T> {
 	public LinkedBag () {    // empty bag
 		firstNode = null;
 		numberOfEntries = 0;
-	}
-	
-	public int getNumberOfEntries() {
-		return numberOfEntries;
 	}
 	
 	public int setNumberOfEntries(int entry) {
@@ -27,6 +27,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 		firstNode = newFirstNode;
 		return firstNode;
 	}
+	
 	@Override
 	public int getCurrentSize() {
 		return numberOfEntries;

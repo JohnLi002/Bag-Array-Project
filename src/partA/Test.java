@@ -1,5 +1,9 @@
 package partA;
 
+/*
+ * Group Members: John Li, Tony Lei, AJ Kreuzkamp
+ */
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -9,6 +13,7 @@ public class Test {
 		bag1.add(2);
 		bag1.add(3);
 		System.out.println(bag1.isEmpty()); //tests if the isEmpty method works when bag has something
+		System.out.println(bag1.getCurrentSize());
 		
 		LinkedBag<Integer> bag2 = new LinkedBag<>(); //creates new bag to test other methods
 		bag2.add(2); //changes bag to have 2,4,5,6,7,8
