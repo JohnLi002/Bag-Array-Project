@@ -18,14 +18,19 @@ public class GuessingGame {
 				randomNums.add((int) (Math.random() * 10) + 1);
 			}
 			
-			System.out.println("Enter " + userNum + " integars in the range from 1 to 10. Entries may be duplicate.");
+			System.out.println("Enter " + userNum + " integers in the range from 1 to 10. Entries may be duplicate.");
 
 			while(!correct) {//loops guessing until user guesses correctly
 				System.out.println("Input guesses");
 				LinkedBag<Integer> userBag = new LinkedBag<>();
 				
 				for(int i = 0; i < userNum; i++) {
-					userBag.add(input.nextInt());
+					if(input.nextInt() < 1 || input.nextInt() > 10) {
+						System.out.println("The number is not in the range! Please enter the integers again.");
+						i--;
+					}else {
+						userBag.add(input.nextInt());
+					}
 				}
 				
 				if(randomNums.equals(userBag)) {//checks if guess is complete correct
