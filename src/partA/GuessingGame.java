@@ -25,7 +25,7 @@ public class GuessingGame {
 				System.out.print("Input:" + '\t');
 				LinkedBag<Integer> userBag = new LinkedBag<>();
 				
-				for(int i = 0; i < userNum; i++) {
+				for(int i = 0; i < userNum; i++) {//Checks if the input is out of bounds
 					if(input.nextInt() < 1 || input.nextInt() > 10) {
 						System.out.println("The number is not in the range! Please enter the integers again.");
 						i--;
