@@ -26,7 +26,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 
 	@Override
-	public boolean add (T anEntry) {
+	public boolean add (T anEntry) { //creates a new node with the anEntry as data
 		Node newNode = new Node(anEntry);
 		newNode.next = firstNode;
 		firstNode = newNode;
@@ -36,18 +36,18 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public boolean remove(T anEntry) {
-		if(getCurrentSize() == 0) {
+		if(getCurrentSize() == 0) { //if there is no bag, cannot remove so return false
 			return false;
 		}
 		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
-			if(currentNode.data.equals(anEntry) && getCurrentSize() == 1) {
+			if(currentNode.data.equals(anEntry) && getCurrentSize() == 1) { // if the only entry is to be removed, just turn firstNode to null
 				firstNode = null;
 				numberOfEntries--;
 				return true;
-			} else if(currentNode.data.equals(anEntry)) {
-				currentNode.data = firstNode.data;
-				firstNode = firstNode.next;
-				numberOfEntries--;
+			} else if(currentNode.data.equals(anEntry)) { //finds correct data
+				currentNode.data = firstNode.data; //changes that found data into first node data
+				firstNode = firstNode.next; //get rid of firstNode so that second node is first node
+				numberOfEntries--; //decrease entries
 				return true;
 			}
 		}
@@ -57,21 +57,21 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T remove() {
-		if(firstNode.next != null) {
+		if(firstNode.next != null) { //just takes out first entry
 			Node initial = firstNode;
 			firstNode = firstNode.next;
 			numberOfEntries--;
 			return initial.data;
 		}
 		else {
-			firstNode = null;
+			firstNode = null; //this means there is either one node or no nodes so just make it null
 		}
 		
 		return null;
 	}
 
 	@Override
-	public void clear() {
+	public void clear() { //resets everything with no nodes and numberOfEntries = 0
 		firstNode = null;
 		numberOfEntries = 0;
 	}
@@ -79,24 +79,24 @@ public class LinkedBag <T> implements BagInterface <T> {
 	@Override
 	public boolean contains(T anEntry) {
 		Node check = firstNode;
-		while(check != null) {
+		while(check != null) { //loops while the check is not null (looping until it does hit null)
 			if(check.equals(anEntry)) {
-				return false;
+				return true; //finds entry
 			}
-			check = check.next;
+			check = check.next;//check changes to node inside node
 		}
-		return false;
+		return false;//did not find entry
 	}
 
 	@Override
 	public int getFrequencyOf(T anEntry) {
 		int counter = 0;
 		Node check = firstNode;
-		while(check != null) {
+		while(check != null) { //loops till check becomes null
 			if(anEntry.equals(check.data)) {
-				counter++;
+				counter++; //increases number that represents number of found anEntry
 			}
-			check = check.next;
+			check = check.next; //changes check so that it is the check inside of check
 		}
 		return counter;
 	}
@@ -115,30 +115,30 @@ public class LinkedBag <T> implements BagInterface <T> {
 
 	@Override
 	public T[] toArray(T[] input) {
-		T[] result = Arrays.copyOf(input, numberOfEntries);
+		T[] result = Arrays.copyOf(input, numberOfEntries); //turns input array into the array the be returned
 		int idx = 0;
 		for (Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next) {
-			result[idx ++] = currentNode.data;
+			result[idx++] = currentNode.data; //adds all data from firstNode as it goes
 		}
 		return result;
 	}
 	
 	public boolean equals(LinkedBag<T> other) {
-		if(other.getCurrentSize() != getCurrentSize()) {
+		if(other.getCurrentSize() != getCurrentSize()) { //size different immediately false
 			return false;
 		}
 		
-		LinkedBag<T> given = new LinkedBag<>();
-		Node temp = other.firstNode;
+		LinkedBag<T> given = new LinkedBag<>(); //creates a copy of other
+		Node temp = other.firstNode; //recreates first node to be copied
 		
-		while(temp != null) {
+		while(temp != null) { //adds all data from temp node into given (copy of other bag)
 			given.add(temp.data);
 			temp = temp.next;
 		}
-		Node currentNode = firstNode;
+		Node currentNode = firstNode; //goes through the first node
 		while(currentNode != null) {
 			if(!given.remove(currentNode.data)) {
-				return false;
+				return false; //cannot remove so there is an object other does not have
 			}
 			currentNode = currentNode.next;
 		}
