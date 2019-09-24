@@ -17,13 +17,6 @@ public class GuessingGame {
 				randomNums.add((int) (Math.random() * 10) + 1);
 			}
 			
-			//---------------
-			//used to show what is the current random number (for testing reasons
-			Object[] a = randomNums.toArray();
-			for(int i = 0; i < userNum; i++) {
-				System.out.println(a[i]);
-			}
-			//-------------
 			System.out.println("Enter " + userNum + " integars in the range from 1 to 10. Entries may be duplicate.");
 
 			while(!correct) {
