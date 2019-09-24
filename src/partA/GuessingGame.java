@@ -52,7 +52,7 @@ public class GuessingGame {
 					
 					for(int i = 0; i < userNum; i++) {
 						for(int ii = 0; ii < userNum; ii++) {
-							if(answerArray[ii].equals(guessArray[i])) {
+							if(answerArray[ii] != null && answerArray[ii].equals(guessArray[i])) {
 								numCorrect+=1;
 								answerArray[ii] = null;
 								break;
