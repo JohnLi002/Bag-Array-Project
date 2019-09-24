@@ -3,14 +3,30 @@ package partA;
 import java.util.Arrays;
 
 public class LinkedBag <T> implements BagInterface <T> {
-	private Node  firstNode;
+	private Node firstNode;
 	private int numberOfEntries;
 	
 	public LinkedBag () {    // empty bag
 		firstNode = null;
 		numberOfEntries = 0;
 	}
-
+	
+	public int getNumberOfEntries() {
+		return numberOfEntries;
+	}
+	
+	public int setNumberOfEntries(int entry) {
+		numberOfEntries = entry;
+		return numberOfEntries;
+	}
+	
+	public Node getFirstNode() {
+		return firstNode;
+	}
+	public Node setFirstNode(Node newFirstNode) {
+		firstNode = newFirstNode;
+		return firstNode;
+	}
 	@Override
 	public int getCurrentSize() {
 		return numberOfEntries;
