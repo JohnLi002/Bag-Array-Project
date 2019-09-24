@@ -62,5 +62,4 @@ public class GuessingGame {
 		
 		input.close(); //close scanner
 		System.out.println("Good Bye!");
-	}
 }
