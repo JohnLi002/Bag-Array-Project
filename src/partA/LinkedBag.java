@@ -196,8 +196,6 @@ public class LinkedBag <T> implements BagInterface <T> {
 			this (data, null);
 		}
 	}
-	
-	
 }
 
 

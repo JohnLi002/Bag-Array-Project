@@ -5,21 +5,21 @@ public class Test {
 	public static void main(String[] args) {
 		LinkedBag<Integer> bag1 = new LinkedBag<>();
 		System.out.println(bag1.isEmpty()); //tests if the isEmpty method works when bag is empty
-		bag1.add(1);
+		bag1.add(1); //changes bag to have 1,2,3
 		bag1.add(2);
 		bag1.add(3);
 		System.out.println(bag1.isEmpty()); //tests if the isEmpty method works when bag has something
 		
-		LinkedBag<Integer> bag2 = new LinkedBag<>();
-		bag2.add(2);
+		LinkedBag<Integer> bag2 = new LinkedBag<>(); //creates new bag to test other methods
+		bag2.add(2); //changes bag to have 2,4,5,6,7,8
 		bag2.add(4);
 		bag2.add(5);
 		bag2.add(6);
 		bag2.add(7);
 		bag2.add(8);
 		
-		System.out.println(bag1.remove(4)); //should return false
-		System.out.println(bag1.remove(3)); //should return true
+		System.out.println(bag1.remove(4)); //should return false (4 is not in bag)
+		System.out.println(bag1.remove(3)); //should return true (3 is in bag)
 		
 		Integer[] a = (Integer[]) bag1.toArray(new Integer[1]);//testing out if the remove(parameter) method and the toArray(parameter) method works
 		for(int i = 0; i < bag1.getCurrentSize(); i++) {
@@ -32,12 +32,12 @@ public class Test {
 			System.out.println(b[i]); //prints out array to see if it works (if there is still a five it doesn't work)
 		}
 		
-		bag1.clear();
+		bag1.clear(); //changes bag to have 1,2,3
 		bag1.add(1);
 		bag1.add(2);
 		bag1.add(3);
 		
-		bag2.clear();
+		bag2.clear(); //changes bag to have 1, 2
 		bag2.add(1);
 		bag2.add(2);
 		
@@ -50,12 +50,12 @@ public class Test {
 		
 		System.out.println();
 		
-		bag1.clear();
+		bag1.clear(); //changes bag so that it holds 2,4,6
 		bag1.add(2);
 		bag1.add(4);
 		bag1.add(6);
 		
-		bag2.clear();
+		bag2.clear(); //changes bag to hold 1,3
 		bag2.add(1);
 		bag2.add(3);
 		
@@ -65,10 +65,10 @@ public class Test {
 			System.out.println(d[i]);
 		}
 		
-		bag1.clear();
+		bag1.clear(); //remake bag1 to be just like bag2
 		bag1.add(1);
 		bag1.add(3);
 		
-		System.out.print(bag1.equals(bag2));
+		System.out.print(bag1.equals(bag2)); //prints out boolean if bag1 equals bag2
 	}
 }
