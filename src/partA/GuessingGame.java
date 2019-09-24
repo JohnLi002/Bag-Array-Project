@@ -42,7 +42,6 @@ public class GuessingGame {
 						for(int ii = 0; ii < userNum; ii++) {
 							if(answerArray[ii].equals(guessArray[i])) {
 								numCorrect++;
-								System.out.println(answerArray[ii]);
 								answerArray[ii] = -1;
 								break;
 							}
