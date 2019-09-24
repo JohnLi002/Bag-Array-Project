@@ -102,7 +102,7 @@ public class LinkedBag <T> implements BagInterface <T> {
 	}
 
 	@Override
-	public T[] toArray() {
+	public T[] toArray() { //creates array which will have all data in bag inputted into it
 		@SuppressWarnings("unchecked")
 		T[] result = (T[]) new Object[numberOfEntries];
 		int idx = 0;
@@ -145,14 +145,16 @@ public class LinkedBag <T> implements BagInterface <T> {
 		
 		return true;
 	}
-	public LinkedBag<T> Union(LinkedBag<T> other) {
-		LinkedBag<T> result = new LinkedBag<T>();
+	public LinkedBag<T> Union(LinkedBag<T> other) { 
+		LinkedBag<T> result = new LinkedBag<T>(); //create LinkedBag that will be returned
 		Node temp = firstNode;
-		while(temp != null) {
+		while(temp != null) { //adds all objects of this LinkedBag.java
 			result.add(temp.data);
 			temp = temp.next;
-		} 		temp = other.firstNode;
-		 while(temp != null) {
+		}
+		temp = other.firstNode; //temp now has firstNode of other 
+		
+		while(temp != null) { //adds all objects of other
 			result.add(temp.data);
 			temp = temp.next;
 		}
@@ -160,22 +162,22 @@ public class LinkedBag <T> implements BagInterface <T> {
 		return result;
 	}
 	public LinkedBag<T> Intersection(LinkedBag<T> other) {
-		LinkedBag<T> temp = new LinkedBag<>();
+		LinkedBag<T> temp = new LinkedBag<>(); //create copy of other
 		Node otherData = other.firstNode;
 		
-		while(otherData != null) {
+		while(otherData != null) { //inputs all data from other into copy
 			temp.add(otherData.data);
 			otherData = otherData.next;
 		}
 		
-		LinkedBag<T> result = new LinkedBag<>();
+		LinkedBag<T> result = new LinkedBag<>(); //create LinkedBag to be returned
 		Node thisData = firstNode;
 	
-		while(!temp.isEmpty() && thisData != null) {
-			if(temp.remove(thisData.data)) {
-				result.add(thisData.data);
+		while(!temp.isEmpty() && thisData != null) { 
+			if(temp.remove(thisData.data)) { //loops through and checks if element can be removed
+				result.add(thisData.data); //if it can add to result
 			}
-			thisData = thisData.next;
+			thisData = thisData.next; //go to next node
 		}
 		
 		return result;
