@@ -25,13 +25,14 @@ public class GuessingGame {
 				System.out.print("Input:" + '\t');
 				LinkedBag<Integer> userBag = new LinkedBag<>();
 				
+				int temp = 0;
 				for(int i = 0; i < userNum; i++) {//Checks if the input is out of bounds
-					if(input.nextInt() < 1 || input.nextInt() > 10) {
-						System.out.println("The number is not in the range! Please enter the integers again.");
-						i--;
-					}else {
-						userBag.add(input.nextInt());
+					temp = input.nextInt();
+					while(temp < 1 || temp > 10) {
+						System.out.print("The number is not in the range! Please re-enter integer:"+'\t');
+						temp = input.nextInt();
 					}
+					userBag.add(temp);
 				}
 				
 				if(randomNums.equals(userBag)) {//checks if guess is complete correct
@@ -49,7 +50,7 @@ public class GuessingGame {
 						for(int ii = 0; ii < userNum; ii++) {
 							if(answerArray[ii].equals(guessArray[i])) {
 								numCorrect++;
-								answerArray[ii] = -1;
+								answerArray[ii] = null;
 								break;
 							}
 						}
