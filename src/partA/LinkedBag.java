@@ -15,17 +15,18 @@ public class LinkedBag <T> implements BagInterface <T> {
 		numberOfEntries = 0;
 	}
 	
-	public int setNumberOfEntries(int entry) {
+	public void setNumberOfEntries(int entry) {
 		numberOfEntries = entry;
+	}
+	public int getNumberOfEntries() {
 		return numberOfEntries;
 	}
 	
 	public Node getFirstNode() {
 		return firstNode;
 	}
-	public Node setFirstNode(Node newFirstNode) {
+	public void setFirstNode(Node newFirstNode) {
 		firstNode = newFirstNode;
-		return firstNode;
 	}
 	
 	@Override
